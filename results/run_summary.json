@@ -1,0 +1,13 @@
+{
+  "hypothesis": "Query-aware supervised feature interactions improve ranking over conventional retrieval and fixed-weight / non-adaptive supervised baselines.",
+  "primary_benchmark": "eval_full_{val,test} (1200 queries \u00d7 1200 candidates)",
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "hybrid_weights_file": "D:\\RIT\\Third Year\\AI&ML\\CodeSearch\\artifacts\\models\\hybrid_weights.json",
+  "results_file": "D:\\RIT\\Third Year\\AI&ML\\CodeSearch\\results\\metrics_full.csv",
+  "notes": [
+    "Candidate text = func_name + docstring-stripped code (no query leakage).",
+    "TF-IDF fitted on train queries+code only.",
+    "Hybrid weights tuned on validation full-split only.",
+    "Labels are silver (docstring\u2013function pairs)."
+  ]
+}

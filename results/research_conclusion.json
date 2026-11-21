@@ -1,0 +1,49 @@
+{
+  "primary_benchmark": "eval_full_test (1200 x 1200)",
+  "best_system_test_MRR": "query_aware_fusion",
+  "metrics_test": {
+    "MRR": {
+      "tfidf": 0.5799,
+      "sbert": 0.7479,
+      "fixed_hybrid": 0.7856,
+      "identifier_only": 0.4001,
+      "lr_nonadaptive": 0.7411,
+      "lr_query_aware": 0.7349,
+      "rf_nonadaptive": 0.5348,
+      "rf_query_aware": 0.5391,
+      "query_aware_fusion": 0.7895
+    },
+    "P@5": {
+      "tfidf": 0.1463,
+      "sbert": 0.1737,
+      "fixed_hybrid": 0.1788,
+      "identifier_only": 0.0992,
+      "lr_nonadaptive": 0.1722,
+      "lr_query_aware": 0.1717,
+      "rf_nonadaptive": 0.141,
+      "rf_query_aware": 0.142,
+      "query_aware_fusion": 0.1792
+    },
+    "R@5": {
+      "tfidf": 0.7317,
+      "sbert": 0.8683,
+      "fixed_hybrid": 0.8942,
+      "identifier_only": 0.4958,
+      "lr_nonadaptive": 0.8608,
+      "lr_query_aware": 0.8583,
+      "rf_nonadaptive": 0.705,
+      "rf_query_aware": 0.71,
+      "query_aware_fusion": 0.8958
+    }
+  },
+  "hypothesis_assessment": "PARTIAL SUPPORT",
+  "evidence": [
+    "query_aware_fusion beats fixed_hybrid on held-out TEST MRR (0.7895 vs 0.7856) and R@5 (0.8958 vs 0.8942).",
+    "On VAL, fixed_hybrid is slightly ahead \u2014 expected because hybrid weights were tuned on VAL MRR.",
+    "Pair-level LR/RF query-aware interactions do NOT beat non-adaptive counterparts on full-split; they also lag fixed hybrid \u2014 pool10 classification transfers poorly to full ranking.",
+    "Ablation (val): removing semantic features hurts most; removing identifier features improves LR full-split MRR (I can act as noise outside the 10-pool).",
+    "SBERT alone is strong; TF-IDF alone is weaker; hybrid of L+I+S is best among non-learned systems."
+  ],
+  "proposed_primary_model_for_demo": "query_aware_fusion",
+  "original_proposed_model": "lr_query_aware (kept for comparison)"
+}

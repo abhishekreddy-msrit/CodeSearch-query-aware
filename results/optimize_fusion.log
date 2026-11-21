@@ -1,0 +1,29 @@
+[02:27:35] === Optimization sprint (VAL selection only) ===
+[02:27:37] code vocab size=14230 n_docs=5600
+[02:27:37] Building train/val score matrices…
+[02:27:46] query feat dim=6 val Qid mean=0.050 Qspec mean=0.642
+[02:27:47] VAL tfidf              MRR=0.6238 R@5=0.7650
+[02:27:47] VAL sbert              MRR=0.7605 R@5=0.8708
+[02:27:48] VAL fixed_hybrid       MRR=0.8172 R@5=0.9125
+[02:27:48] VAL fusion_v1          MRR=0.8128 R@5=0.9150
+[02:27:48] Training v2_zscore_only…
+[02:28:30] VAL v2_zscore_only     MRR=0.7473 R@5=0.8667 w_std=[0.0012, 0.0008, 0.0009] loss=0.0240
+[02:28:30] Training v2_full…
+[02:29:33] VAL v2_full            MRR=0.7489 R@5=0.8767 w_std=[0.0076, 0.0183, 0.0255] loss=0.0252
+[02:29:33] Training v2_full_more_neg…
+[02:31:08] VAL v2_full_more_neg   MRR=0.7485 R@5=0.8767 w_std=[0.0077, 0.0168, 0.0241] loss=0.0287
+[02:31:08] Training v2_no_I_peak…
+[02:32:08] VAL v2_no_I_peak       MRR=0.7577 R@5=0.8783 w_std=[0.0114, 0.0162, 0.0274] loss=0.0243
+[02:32:08] Training v2_semantic_prior…
+[02:33:11] VAL v2_semantic_prior  MRR=0.7463 R@5=0.8750 w_std=[0.005, 0.0113, 0.016] loss=0.0253
+[02:33:11] VAL v2_full_I_zeroed   MRR=0.7367 R@5=0.8717
+[02:33:17] VAL fixed_hybrid_zscore w=(0.2, 0.1, 0.7000000000000001) MRR=0.8018 R@5=0.9067
+[02:33:17] SELECTED on VAL: fixed_hybrid MRR=0.8172
+[02:33:17] === ONE-SHOT test evaluation (post-selection) ===
+[02:33:19] TEST tfidf                  MRR=0.5799 P@5=0.1463 R@5=0.7317
+[02:33:19] TEST sbert                  MRR=0.7479 P@5=0.1737 R@5=0.8683
+[02:33:19] TEST fixed_hybrid           MRR=0.7856 P@5=0.1788 R@5=0.8942 <<SELECTED
+[02:33:20] TEST fusion_v1              MRR=0.7895 P@5=0.1792 R@5=0.8958
+[02:33:20] TEST fixed_hybrid_zscore    MRR=0.7682 P@5=0.1780 R@5=0.8900
+[02:33:20] TARGET: hybrid=0.7856 selected=0.7856 delta=+0.0000 achieved=False
+[02:33:20] DONE

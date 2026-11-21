@@ -1,0 +1,399 @@
+{
+  "params": {
+    "seed": 42,
+    "target_functions": 8000,
+    "max_per_repo": 40,
+    "min_query_tokens": 3,
+    "max_query_tokens": 64,
+    "min_code_lines": 3,
+    "split_ratio": [
+      0.7,
+      0.15,
+      0.15
+    ],
+    "n_hard_neg": 4,
+    "n_random_neg": 5,
+    "bm25_top_k": 50,
+    "amb_query_sim": 0.8,
+    "amb_code_sim": 0.9,
+    "xsplit_near_dup": 0.95
+  },
+  "raw": {
+    "records": 45283,
+    "repos": 1359,
+    "by_original_partition": {
+      "valid": 23107,
+      "test": 22176
+    },
+    "columns": [
+      "func_id",
+      "repository_name",
+      "func_path_in_repository",
+      "func_name",
+      "whole_func_string",
+      "language",
+      "func_code_string",
+      "func_code_tokens",
+      "func_documentation_string",
+      "func_documentation_tokens",
+      "split_name",
+      "func_code_url"
+    ]
+  },
+  "missing_values_raw": {
+    "repository_name": {
+      "null": 0,
+      "empty_or_whitespace": 0
+    },
+    "func_path_in_repository": {
+      "null": 0,
+      "empty_or_whitespace": 0
+    },
+    "func_name": {
+      "null": 0,
+      "empty_or_whitespace": 0
+    },
+    "whole_func_string": {
+      "null": 0,
+      "empty_or_whitespace": 0
+    },
+    "func_code_string": {
+      "null": 0,
+      "empty_or_whitespace": 0
+    },
+    "func_documentation_string": {
+      "null": 0,
+      "empty_or_whitespace": 0
+    },
+    "func_code_url": {
+      "null": 0,
+      "empty_or_whitespace": 0
+    },
+    "language": {
+      "null": 0,
+      "empty_or_whitespace": 0
+    }
+  },
+  "cleaning_steps": [
+    {
+      "step": "missing/empty required field",
+      "removed": 0,
+      "remaining": 45283
+    },
+    {
+      "step": "non-python language tag",
+      "removed": 0,
+      "remaining": 45283
+    },
+    {
+      "step": "malformed: no def header matching func_name",
+      "removed": 0,
+      "remaining": 45283
+    },
+    {
+      "step": "docstring has no usable summary paragraph",
+      "removed": 541,
+      "remaining": 44742
+    },
+    {
+      "step": "non-English/non-ASCII docstring summary",
+      "removed": 239,
+      "remaining": 44503
+    },
+    {
+      "step": "boilerplate docstring (TODO/wrapper/...)",
+      "removed": 25,
+      "remaining": 44478
+    },
+    {
+      "step": "query too short (<3 word tokens)",
+      "removed": 1222,
+      "remaining": 43256
+    },
+    {
+      "step": "query too long (>64 tokens)",
+      "removed": 215,
+      "remaining": 43041
+    },
+    {
+      "step": "query is only a URL / punctuation",
+      "removed": 50,
+      "remaining": 42991
+    },
+    {
+      "step": "docstring could not be removed from code",
+      "removed": 37,
+      "remaining": 42954
+    },
+    {
+      "step": "code too short after docstring removal (<3 lines)",
+      "removed": 1544,
+      "remaining": 41410
+    },
+    {
+      "step": "query text still present verbatim in code (comment/string)",
+      "removed": 49,
+      "remaining": 41361
+    },
+    {
+      "step": "exact duplicate code",
+      "removed": 0,
+      "remaining": 41361
+    },
+    {
+      "step": "normalised duplicate code (whitespace/comments/strings)",
+      "removed": 1,
+      "remaining": 41360
+    },
+    {
+      "step": "duplicate query text (identical docstring summary for another function)",
+      "removed": 2081,
+      "remaining": 39279
+    }
+  ],
+  "docstring_removal_methods": {
+    "ast": 42463,
+    "regex": 450,
+    "ast_no_docstring": 41,
+    "none": 37
+  },
+  "residual_verbatim_query_in_code": 49,
+  "duplicates_detected": {
+    "exact_code_dup_records": 0,
+    "normalised_code_dup_records": 1,
+    "exact_query_dup_records": 2016,
+    "exact_query_and_code_dup": 0
+  },
+  "functions_sharing_identical_query_before_dedup": 3578,
+  "clean": {
+    "records": 39279,
+    "repos": 1337,
+    "py3_parseable": 38850,
+    "py2_or_unparseable": 429
+  },
+  "sampling": {
+    "after_repo_cap": 19448,
+    "repos_after_cap": 1337,
+    "excluded_by_repo_cap": 19831,
+    "sampled": 8000,
+    "repos_sampled": 1147
+  },
+  "splits": {
+    "train": {
+      "functions": 5600,
+      "pct_functions": 70.0,
+      "repos": 805,
+      "pct_repos": 70.2,
+      "largest_repo_share_pct": 0.4
+    },
+    "val": {
+      "functions": 1200,
+      "pct_functions": 15.0,
+      "repos": 171,
+      "pct_repos": 14.9,
+      "largest_repo_share_pct": 2.0
+    },
+    "test": {
+      "functions": 1200,
+      "pct_functions": 15.0,
+      "repos": 171,
+      "pct_repos": 14.9,
+      "largest_repo_share_pct": 1.9
+    }
+  },
+  "split_checks": {
+    "repos_in_more_than_one_split": 0,
+    "repo_overlap_train_val": 0,
+    "repo_overlap_train_test": 0,
+    "repo_overlap_val_test": 0,
+    "code_hash_overlap_across_splits": 0,
+    "query_overlap_across_splits": 0,
+    "cross_split_near_duplicates_vs_train": {
+      "val": {
+        "n_ge_threshold": 0,
+        "median_max_sim": 0.323
+      },
+      "test": {
+        "n_ge_threshold": 0,
+        "median_max_sim": 0.327
+      }
+    }
+  },
+  "pairs": {
+    "per_query": {
+      "positives": 1,
+      "hard_negatives": 4,
+      "random_negatives": 5
+    },
+    "hard_negative_shortfall": 18,
+    "by_split": {
+      "train": {
+        "queries": 5600,
+        "pairs": 55989,
+        "positives": 5600,
+        "negatives": 50389
+      },
+      "val": {
+        "queries": 1200,
+        "pairs": 11993,
+        "positives": 1200,
+        "negatives": 10793
+      },
+      "test": {
+        "queries": 1200,
+        "pairs": 12000,
+        "positives": 1200,
+        "negatives": 10800
+      }
+    },
+    "by_type": {
+      "random": 40000,
+      "hard": 31982,
+      "positive": 8000
+    },
+    "ambiguous_by_type": {
+      "hard": 620,
+      "random": 16
+    },
+    "ambiguity_reason_counts": {
+      "candidate_docstring_similar_to_query": 206,
+      "same_function_name": 390,
+      "code_near_duplicate_of_positive": 104
+    },
+    "hard_neg_same_repo_pct": 20.4,
+    "random_neg_same_repo_pct": 0.4,
+    "hard_neg_mean_bm25": 20.37,
+    "random_neg_mean_bm25": 1.83,
+    "positive_mean_bm25": 25.44,
+    "positive_is_bm25_top1_pct": 50.7
+  },
+  "cosqa": {
+    "pair_files": {
+      "train": 20000,
+      "dev": 604,
+      "total": 20604,
+      "label_counts": {
+        "0": 10584,
+        "1": 10020
+      },
+      "unique_queries": 20604,
+      "unique_codes": 6267,
+      "fields": [
+        "idx",
+        "doc",
+        "code",
+        "code_tokens",
+        "docstring_tokens",
+        "label"
+      ],
+      "has_repo_metadata": false
+    },
+    "query_length_tokens": {
+      "mean": 6.6,
+      "median": 6.0
+    },
+    "retrieval_files": {
+      "dev": 500,
+      "test": 500,
+      "code_pool_size": 6267,
+      "test_labels": {
+        "1": 500
+      },
+      "positives_per_test_query": {
+        "1": 500
+      }
+    },
+    "code_overlap": {
+      "cosqa_unique_codes": 6267,
+      "in_our_8k_sample": 98,
+      "in_our_sample_by_split": {
+        "test": 14,
+        "train": 74,
+        "val": 10
+      },
+      "in_csn_val_test_raw": 640
+    },
+    "retrieval_test_queries_also_in_pair_train": 480
+  },
+  "full_split_benchmark": {
+    "val": {
+      "queries": 1200,
+      "candidates_per_query": 1200,
+      "pairs": 1440000,
+      "positives": 1200,
+      "positives_per_query_all_equal_1": true,
+      "pool_identical_for_every_query": true,
+      "ambiguous_negatives": 468,
+      "queries_with_any_ambiguous_negative": 227,
+      "ambiguity_reason_counts": {
+        "same_function_name": 416,
+        "candidate_docstring_similar_to_query": 52,
+        "code_near_duplicate_of_positive": 18
+      },
+      "ten_pool_pairs_contained": 11993,
+      "ten_pool_pairs_total": 11993
+    },
+    "test": {
+      "queries": 1200,
+      "candidates_per_query": 1200,
+      "pairs": 1440000,
+      "positives": 1200,
+      "positives_per_query_all_equal_1": true,
+      "pool_identical_for_every_query": true,
+      "ambiguous_negatives": 540,
+      "queries_with_any_ambiguous_negative": 223,
+      "ambiguity_reason_counts": {
+        "same_function_name": 476,
+        "candidate_docstring_similar_to_query": 48,
+        "code_near_duplicate_of_positive": 26
+      },
+      "ten_pool_pairs_contained": 12000,
+      "ten_pool_pairs_total": 12000
+    }
+  },
+  "final_corpus": {
+    "functions": 8000,
+    "repos": 1147,
+    "query_tokens": {
+      "mean": 11.5,
+      "median": 9.0,
+      "p95": 30.0
+    },
+    "code_lines": {
+      "mean": 17.8,
+      "median": 11.0,
+      "p95": 55.0
+    },
+    "functions_per_repo": {
+      "mean": 7.0,
+      "median": 5.0,
+      "max": 24
+    },
+    "py3_parseable_pct": 99.3,
+    "methods_pct": 58.9,
+    "missing_values": {
+      "func_id": 0,
+      "split": 0,
+      "repository_name": 0,
+      "func_path_in_repository": 0,
+      "func_name": 0,
+      "func_code_url": 0,
+      "csn_original_partition": 0,
+      "query": 0,
+      "query_n_tokens": 0,
+      "docstring_full": 0,
+      "code": 0,
+      "original_source_with_docstring": 0,
+      "code_identifiers": 0,
+      "func_name_tokens": 0,
+      "code_n_lines": 0,
+      "py3_parseable": 0,
+      "docstring_removal_method": 0,
+      "code_hash": 0,
+      "code_norm_hash": 0,
+      "near_dup_of_train": 0,
+      "in_cosqa_code_pool": 0
+    }
+  },
+  "removed_total": 6004
+}

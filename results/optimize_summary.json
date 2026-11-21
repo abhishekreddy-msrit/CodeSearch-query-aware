@@ -1,0 +1,69 @@
+{
+  "selected": "fixed_hybrid",
+  "val_mrr": 0.8172019854825533,
+  "val_r5": 0.9125,
+  "val_p5": 0.18249999999999997,
+  "selection_criterion": "max MRR on full-split validation",
+  "test_not_used_for_selection": true,
+  "prior_test_exposure_note": "Earlier project phase already inspected test metrics for fusion_v1 vs hybrid. This sprint selected the new model using validation only; the final test numbers below are a single post-selection readout and should not be treated as a pristine holdout.",
+  "val_leaderboard": [
+    {
+      "system": "fixed_hybrid",
+      "MRR": 0.8172019854825533,
+      "P@5": 0.18249999999999997,
+      "R@5": 0.9125
+    },
+    {
+      "system": "fusion_v1",
+      "MRR": 0.8128149200559659,
+      "P@5": 0.18299999999999997,
+      "R@5": 0.915
+    },
+    {
+      "system": "fixed_hybrid_zscore",
+      "MRR": 0.8018332317314947,
+      "P@5": 0.18133333333333332,
+      "R@5": 0.9066666666666666
+    },
+    {
+      "system": "v2_no_I_peak",
+      "MRR": 0.7576748032024654,
+      "P@5": 0.17566666666666667,
+      "R@5": 0.8783333333333333
+    },
+    {
+      "system": "v2_full",
+      "MRR": 0.7488575408748522,
+      "P@5": 0.1753333333333333,
+      "R@5": 0.8766666666666667
+    },
+    {
+      "system": "v2_full_more_neg",
+      "MRR": 0.7485431785427225,
+      "P@5": 0.1753333333333333,
+      "R@5": 0.8766666666666667
+    },
+    {
+      "system": "v2_zscore_only",
+      "MRR": 0.747326968846776,
+      "P@5": 0.17333333333333334,
+      "R@5": 0.8666666666666667
+    },
+    {
+      "system": "v2_semantic_prior",
+      "MRR": 0.7463453423558878,
+      "P@5": 0.175,
+      "R@5": 0.875
+    }
+  ],
+  "test_fixed_hybrid_mrr": 0.7856300830299534,
+  "test_selected_mrr": 0.7856300830299534,
+  "test_delta_mrr_vs_hybrid": 0.0,
+  "target_delta": 0.01,
+  "target_achieved": false,
+  "test_selected_metrics": {
+    "MRR": 0.7856300830299534,
+    "P@5": 0.17883333333333332,
+    "R@5": 0.8941666666666667
+  }
+}

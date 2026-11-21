@@ -1,0 +1,92 @@
+{
+  "selected": "fixed_hybrid",
+  "val_mrr": 0.8172019854825533,
+  "val_r5": 0.9125,
+  "val_leaderboard": [
+    {
+      "system": "fixed_hybrid",
+      "MRR": 0.8172019854825533,
+      "P@5": 0.18249999999999997,
+      "R@5": 0.9125
+    },
+    {
+      "system": "hybrid_retune_train",
+      "MRR": 0.816717996857459,
+      "P@5": 0.18299999999999997,
+      "R@5": 0.915
+    },
+    {
+      "system": "cluster_hybrid_k3",
+      "MRR": 0.8163986323640408,
+      "P@5": 0.18333333333333332,
+      "R@5": 0.9166666666666666
+    },
+    {
+      "system": "cluster_hybrid_k4",
+      "MRR": 0.8157256360003229,
+      "P@5": 0.18283333333333332,
+      "R@5": 0.9141666666666667
+    },
+    {
+      "system": "fusion_v1",
+      "MRR": 0.8128149200559659,
+      "P@5": 0.18299999999999997,
+      "R@5": 0.915
+    },
+    {
+      "system": "gated_retune_hybrid_sbert",
+      "MRR": 0.8066143478177119,
+      "P@5": 0.18199999999999997,
+      "R@5": 0.91
+    },
+    {
+      "system": "gated_hybrid_sbert",
+      "MRR": 0.8055973834691834,
+      "P@5": 0.18266666666666664,
+      "R@5": 0.9133333333333333
+    },
+    {
+      "system": "combsum_hybrid_sbert",
+      "MRR": 0.7985499039746544,
+      "P@5": 0.18133333333333332,
+      "R@5": 0.9066666666666666
+    },
+    {
+      "system": "rrf_tuned_train",
+      "MRR": 0.7805728960835263,
+      "P@5": 0.18,
+      "R@5": 0.9
+    },
+    {
+      "system": "rrf_k20",
+      "MRR": 0.7477646645485256,
+      "P@5": 0.1748333333333333,
+      "R@5": 0.8741666666666666
+    },
+    {
+      "system": "rrf_k40",
+      "MRR": 0.7354666412025926,
+      "P@5": 0.174,
+      "R@5": 0.87
+    },
+    {
+      "system": "rrf_k60",
+      "MRR": 0.7308442754384851,
+      "P@5": 0.17316666666666666,
+      "R@5": 0.8658333333333333
+    }
+  ],
+  "test_not_used_for_selection": true,
+  "prior_test_exposure_note": "Earlier phases already viewed test metrics. This round selected on validation only; the following test numbers are a single post-selection readout.",
+  "test_fixed_hybrid_mrr": 0.7856300830299534,
+  "test_selected_mrr": 0.7856300830299534,
+  "test_delta_mrr_vs_hybrid": 0.0,
+  "target_delta": 0.01,
+  "target_achieved": false,
+  "test_selected_metrics": {
+    "MRR": 0.7856300830299534,
+    "P@5": 0.17883333333333332,
+    "R@5": 0.8941666666666667
+  },
+  "test_fusion_v1_mrr": 0.7895409691642133
+}

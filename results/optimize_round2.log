@@ -1,0 +1,35 @@
+[02:48:48] === Round 2 optimization (VAL selection) ===
+[02:48:50] Loading matrices…
+[02:48:58] VAL tfidf                        MRR=0.6238 R@5=0.7650
+[02:48:59] VAL sbert                        MRR=0.7605 R@5=0.8708
+[02:49:00] VAL fixed_hybrid                 MRR=0.8172 R@5=0.9125
+[02:49:00] VAL fusion_v1                    MRR=0.8128 R@5=0.9150
+[02:50:36] hybrid retuned on TRAIN: w=(0.35, 0.2, 0.45) train_MRR=0.7302
+[02:50:39] VAL hybrid_retune_train          MRR=0.8167 R@5=0.9150
+[02:50:42] VAL rrf_k20                      MRR=0.7478 R@5=0.8742
+[02:50:45] VAL rrf_k40                      MRR=0.7355 R@5=0.8700
+[02:50:48] VAL rrf_k60                      MRR=0.7308 R@5=0.8658
+[02:51:11] VAL rrf_tuned_train              MRR=0.7806 R@5=0.9000
+[02:51:11] best RRF on train-sub: (30, (1.0, 0.5, 2.0)) MRR=0.8039
+[02:51:11] Fitting cluster hybrid on TRAIN…
+[02:53:32] VAL cluster_hybrid_k3            MRR=0.8164 R@5=0.9167
+[02:53:32] cluster weights: {0: (0.35, 0.2, 0.45), 1: (0.55, 0.1, 0.35), 2: (0.25, 0.2, 0.55)}
+[02:55:53] VAL cluster_hybrid_k4            MRR=0.8157 R@5=0.9142
+[02:55:53] Training query-gated hybrid↔SBERT mix…
+[02:56:53] VAL gated_hybrid_sbert           MRR=0.8056 R@5=0.9133
+[02:56:53] gate mean=0.323 std=0.002 p10=0.321 p90=0.325
+[02:57:10] VAL gated_retune_hybrid_sbert    MRR=0.8066 R@5=0.9100
+[02:57:11] VAL max_hybrid_sbert             MRR=0.7619 R@5=0.8733
+[02:57:12] VAL combsum_hybrid_sbert         MRR=0.7985 R@5=0.9067
+[02:57:12] SELECTED on VAL: fixed_hybrid MRR=0.8172
+[02:57:12] === ONE-SHOT TEST ===
+[02:57:13] TEST tfidf                        MRR=0.5799 P@5=0.1463 R@5=0.7317
+[02:57:13] TEST sbert                        MRR=0.7479 P@5=0.1737 R@5=0.8683
+[02:57:13] TEST fixed_hybrid                 MRR=0.7856 P@5=0.1788 R@5=0.8942 <<SELECTED
+[02:57:14] TEST fusion_v1                    MRR=0.7895 P@5=0.1792 R@5=0.8958
+[02:57:14] TEST rrf_tuned_train              MRR=0.7523 P@5=0.1762 R@5=0.8808
+[02:57:15] TEST cluster_hybrid_k3            MRR=0.7914 P@5=0.1797 R@5=0.8983
+[02:57:15] TEST gated_hybrid_sbert           MRR=0.7914 P@5=0.1787 R@5=0.8933
+[02:57:15] TEST hybrid_retune_train          MRR=0.7911 P@5=0.1792 R@5=0.8958
+[02:57:15] TARGET check: hybrid=0.7856 selected=0.7856 delta=+0.0000 achieved=False
+[02:57:15] DONE

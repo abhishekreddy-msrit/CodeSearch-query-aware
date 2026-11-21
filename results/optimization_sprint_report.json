@@ -1,0 +1,38 @@
+{
+  "sprint": "query-aware ranking optimization",
+  "selection_protocol": "maximize full-split validation MRR; test evaluated once after selection",
+  "prior_test_exposure": true,
+  "prior_test_exposure_note": "fusion_v1 vs fixed_hybrid test metrics were observed in the initial pipeline phase before this sprint. Round-1/2 selection used validation only.",
+  "val_winner": "fixed_hybrid",
+  "val_winner_mrr": 0.8172,
+  "val_runner_ups": [
+    {"system": "hybrid_retune_train", "MRR": 0.8167},
+    {"system": "cluster_hybrid_k3", "MRR": 0.8164},
+    {"system": "cluster_hybrid_k4", "MRR": 0.8157},
+    {"system": "fusion_v1", "MRR": 0.8128}
+  ],
+  "test_post_selection": {
+    "fixed_hybrid": {"MRR": 0.7856, "P@5": 0.1788, "R@5": 0.8942, "selected": true},
+    "fusion_v1": {"MRR": 0.7895, "P@5": 0.1792, "R@5": 0.8958},
+    "cluster_hybrid_k3": {"MRR": 0.7914, "P@5": 0.1797, "R@5": 0.8983},
+    "gated_hybrid_sbert": {"MRR": 0.7914, "P@5": 0.1787, "R@5": 0.8933},
+    "hybrid_retune_train": {"MRR": 0.7911, "P@5": 0.1792, "R@5": 0.8958}
+  },
+  "target": {
+    "metric": "MRR",
+    "baseline": "fixed_hybrid",
+    "desired_delta": 0.01,
+    "achieved": false,
+    "selected_delta_vs_hybrid_on_test": 0.0,
+    "note": "Under validation-based selection the chosen model IS fixed_hybrid, so delta is 0 by definition."
+  },
+  "diagnosis_v1": {
+    "weight_std": [0.0031, 0.0038, 0.0070],
+    "qid_mean": 0.05,
+    "weights_driven_by": "Qlen (corr ~0.998) with negligible magnitude",
+    "val_vs_hybrid": "fusion_v1 0.8128 < hybrid 0.8172"
+  },
+  "bottleneck": "Linear fusion of L/I/S is near a performance ceiling under silver docstring labels; query features (especially Qid) lack variance to justify large weight shifts; models trained to be query-aware collapse toward near-constant weights or slightly hurt VAL MRR.",
+  "recommended_demo_ranker": "fixed_hybrid",
+  "optional_query_aware_for_analysis": "cluster_hybrid_k3"
+}
