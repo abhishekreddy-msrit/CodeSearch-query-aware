@@ -2,8 +2,6 @@
 
 Natural-language code search over Python functions. The system ranks candidates using complementary retrieval signals—**lexical (TF-IDF)**, **identifier overlap**, and **semantic (Sentence-BERT)**—then compares a **Fixed Hybrid** baseline with **Query-Aware Fusion**, a research method that adapts fusion weights from query characteristics.
 
-Repository: [abhishekreddy-msrit/CodeSearch-query-aware](https://github.com/abhishekreddy-msrit/CodeSearch-query-aware)
-
 ---
 
 ## What this project does
